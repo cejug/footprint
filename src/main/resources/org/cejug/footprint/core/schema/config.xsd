@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="doc/config-doc.xsl"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd"
+	targetNamespace="http://footprint.dev.java.net/generated/config"
+	xmlns:config="http://footprint.dev.java.net/generated/config"
+	elementFormDefault="qualified" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:extensionBindingPrefixes="xjc" jaxb:version="2.1"
+	xmlns:regex="http://footprint.dev.java.net/regex">
+
+	<xsd:import namespace="http://footprint.dev.java.net/regex"
+		schemaLocation="regex.xsd" />
+
+	<xsd:element name="configuration" type="config:footprint.config" />
+
+	<xsd:complexType name="footprint.config">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<jaxb:class>
+					<jaxb:javadoc>
+						The top level element is a sequence of all other,
+						plus some versioning attributes.
+					</jaxb:javadoc>
+				</jaxb:class>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence minOccurs="1">
+			<xsd:element name="template" type="config:ConfigPdfTemplate" />
+			<xsd:element name="security" type="config:ConfigSecurity" />
+			<xsd:element name="database" type="config:ConfigJdbc" />
+			<xsd:element name="pdf2jdbc" type="config:ConfigMapping" />
+			<xsd:element name="fonts" type="config:TrueTypeFileMapping"
+				nillable="true" />
+			<xsd:element name="email" type="config:ConfigEmail" />
+		</xsd:sequence>
+		<xsd:attribute name="title" type="xsd:token" use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The title of the configuration file. Used only
+						for
+						logging - without any impact on the generated PDF files.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="version" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>A unique identifier used by the Footprint Service.
+						If you are not using the footprint web-service, you can type
+						anything in this mandatory field, but
+						we suggest you to keep a
+						version control over the configurations,
+						specially if you manage
+						diverse conference at once.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="date" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The creation date of the configuration file -
+						informative, non functional data (we use that to remember which
+						event we generated the certificates - file dates can be tricky to
+						trace is you copy and modify the file several times).
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="idiom" type="xsd:language" use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The language of the configuration file, also
+						useful for the footprint web-service.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+	</xsd:complexType>
+	<xsd:complexType name="ConfigPdfTemplate">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<jaxb:class>
+					<jaxb:javadoc>
+						<![CDATA[ PDF template is a PDF document with <em>acro forms</em>.
+						<br/>The field of this element refers to a file, like the name and
+						the path of the file as well as the charset and the sufix/prefix of
+						the file. More info on how to include forms in PDF documents: 
+						<a href='http://plpdf.com/dokumentumok/plpdf_oo_form.pdf'>
+						http://plpdf.com/dokumentumok/plpdf_oo_form.pdf</a> or
+						<a href='http://www.acrobatusers.com/articles/2006/07/getting_started_forms/index.php'>
+						http://www.acrobatusers.com/articles/2006/07/getting_started_forms/index.php</a>]]>
+					</jaxb:javadoc>
+				</jaxb:class>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:attribute name="pdf.template.filename" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The filename of the PDF template. We suggest you
+						to use Open Office to create the template.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pdf.template.charset" type="xsd:string"
+			use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The character set of the PDF template - it is
+						used
+						to apply the proper charset in the form fields.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pdf.generated.path" type="xsd:string"
+			default="./generated">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The path where the generated PDF files will be
+						saved.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pdf.generated.prefix" type="xsd:string"
+			default="generated">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>Prefix for the generated files.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pdf.generated.extension" type="xsd:token"
+			default=".pdf">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>Extension for the generated files -
+						if not
+						provided, a default ".pdf" will be used.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pdf.generated.charset" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The character set of the generated PDF files. We
+						suggest you to use UTF-8.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="replaceable" type="xsd:boolean"
+			default="true">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>If true, Footprint should replace the file if it
+						already exists. Default is false. If it is false and the file
+						already exists, an exception will be thrown.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="ConfigSecurity">
+		<xsd:sequence minOccurs="0" maxOccurs="1">
+			<xsd:element name="signature.stamp" type="config:SignatureStamp" />
+		</xsd:sequence>
+		<xsd:attribute name="keystore.filename" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The name of the keystore containing the digital
+						certificate to be used to sign the generated PDF files.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="keystore.type" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The name of the keystore type. Footprint uses
+						Bouncy Castle supported types: JKS, PKCS #12, JCEKS, JKS, BKS,
+						UBER, GKR. Please check the Bouncy Castle documentation for more
+						details: http://www.bouncycastle.org  
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="keystore.password" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The keystore password. Tip: the password of the
+						demo keystore is "footprint" 
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="keystore.pk.alias" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The alias of the private key you want to
+						use for
+						signing the generated PDF files - just in case your keystore has
+						several keys.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="keystore.pk.password" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The password of the private key you want to
+						use
+						for
+						signing the generated PDF files - just in case your keystore
+						has
+						several keys.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="keystore.pk.provider" type="xsd:string"
+			use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The provider of the private key
+						used for
+						signing
+						the
+						generated PDF files. Example:
+						keystore.type="JKS"
+						keystore.pk.provider="SUN"
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="signature.crypto.name" type="xsd:string"
+			use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The name of the cryptographic
+						algorithm used to
+						sign the PDF files.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="signature.contact.mail" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The email of the signer of the generated PDF,
+						usually the conference manager (or conference contact). This
+						email
+						will be included in the signature stamp of the generated
+						PDF files.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="signature.location" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The host building, country or city where the
+						certificates were
+						generated. Usually, we use the city where the
+						conference happened
+						- example: Antwerp or MetroPolis Business
+						Center/Antwerp. This information will be
+						included in the
+						signature
+						stamp of the generated PDF files.
+						</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="signature.reason" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The name event or course, like: Devoxx2008
+						Speaker
+						Certificate or
+						Java Basic Course Completion. This
+						information will
+						be
+						included in the
+						signature
+						stamp of the generated
+						PDF files.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+	</xsd:complexType>
+
+	<xsd:complexType name="SignatureStamp">
+		<xsd:attribute name="signature.field.name" type="xsd:string"
+			use="optional">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The name of the field where the stamp will be
+						applied. If provided, the PDF template should have a field with
+						this name, and the dimensions of the stamp will be adapted to the
+						size of the field.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="signature.stamp.image.filename"
+			type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The name of the image used as stamp - should be an
+						java.util.Image compatible format - we suggest the usage of PNG
+						(the
+						best open source image format).
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="signature.stamp.x1" type="xsd:int">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>Lower left x (in pixels).
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="signature.stamp.y1" type="xsd:int">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>Lower left y (in pixels).
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="signature.stamp.x2" type="xsd:int">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>Upper right x (in pixels).
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="signature.stamp.y2" type="xsd:int">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>Upper right y (in pixels).</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="ConfigJdbc">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<jaxb:class>
+					<jaxb:javadoc>The information about the JDBC connection used to
+						retrieve the data to fill the PDF forms.
+					</jaxb:javadoc>
+				</jaxb:class>
+			</xsd:appinfo>
+		</xsd:annotation>
+
+		<xsd:sequence minOccurs="0" maxOccurs="1">
+			<xsd:element name="driver.properties" type="config:DriverProperties" />
+		</xsd:sequence>
+		<xsd:attribute name="jdbc.driver.classname" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The java class name of the JBDC database driver.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="jdbc.connection.url" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The database connection URL.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="jdbc.query" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The query used to retrieve the data from the
+						database. Important: you need to qualify the name of the response
+						field - for example: "SELECT name,title FROM test". The query
+						language should be compliant with
+						your database, footprint uses
+						raw
+						JDBC to execute this query.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+		<xsd:attribute name="email.column.name" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jaxb:javadoc>The email column is used to dispatch the generated
+						certificates. The contents of this column should be valid email
+						addresses.
+					</jaxb:javadoc>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+
+	</xsd:complexType>
+
+	<xsd:complexType name="DriverProperties">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="driver.properties" type="config:JdbcDriverProperties" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="JdbcDriverProperties">
+		<xsd:attribute name="name" type="xsd:string" />
+		<xsd:attribute name="value" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:complexType name="ConfigEmail">
+		<xsd:sequence minOccurs="0" maxOccurs="1">
+			<xsd:element name="msg.body" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="msg.from" type="xsd:string" />
+		<xsd:attribute name="msg.subject" type="xsd:string" />
+		<xsd:attribute name="smtp.auth" type="xsd:boolean" />
+		<xsd:attribute name="smtp.content.type" type="xsd:string" />
+		<xsd:attribute name="smtp.host" type="xsd:string" />
+		<xsd:attribute name="smtp.password" type="xsd:string" />
+		<xsd:attribute name="smtp.user" type="xsd:string" />
+		<xsd:attribute name="smtp.star.ttls.enable" type="xsd:boolean" />
+		<xsd:attribute name="smtp.transfer.protocol" type="xsd:string" />
+		<xsd:attribute name="socks.proxy.port" type="xsd:string"
+			use="optional" default="" />
+		<xsd:attribute name="socks.proxy.host" type="xsd:string"
+			use="optional" default="" />
+		<xsd:attribute name="post.processing.type" type="config:post.process.mode"
+			use="optional">
+		</xsd:attribute>
+		<xsd:attribute name="post.processing.rename.sufix" type="xsd:string"
+			use="optional" default=".sent">
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:simpleType name="post.process.mode">
+		<xsd:restriction base='xsd:string'>
+			<xsd:enumeration value="NONE" />
+			<xsd:enumeration value="RENAME" />
+			<xsd:enumeration value="MOVE" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="ConfigMapping">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="mapping" type="config:Pdf2JdbcMapping" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Pdf2JdbcMapping">
+		<xsd:attribute name="pdfField" type="xsd:string" />
+		<xsd:attribute name="databaseColumnName" type="xsd:string" />
+		<xsd:attribute name="font" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="TrueTypeFileMapping">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="mapping" type="config:FontMapping" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="FontMapping">
+		<xsd:attribute name="pdfField" type="xsd:string" />
+		<xsd:attribute name="fontFile" type="xsd:string" />
+	</xsd:complexType>
+</xsd:schema>

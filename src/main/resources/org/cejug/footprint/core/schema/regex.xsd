@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://footprint.dev.java.net/regex" xmlns:common="http://cejug-classifieds.dev.java.net/metadata/common"
+	elementFormDefault="qualified" attributeFormDefault="qualified"
+	xmlns:mime="http://www.w3.org/2005/05/xmlmim" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:extensionBindingPrefixes="xjc" jaxb:version="2.1">
+
+	<xsd:annotation>
+		<xsd:documentation>
+			Inspirational source:
+			http://regexlib.com/Default.aspx
+		</xsd:documentation>
+		<xsd:appinfo>
+			<jaxb:globalBindings>
+				<xjc:serializable uid="-6908316602239211070" />
+			</jaxb:globalBindings>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:simpleType name="email">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="smtp.host">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(smtp)\.([\w\-]+)\.[\w\-]{2,3}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="non.empty">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value=".+" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

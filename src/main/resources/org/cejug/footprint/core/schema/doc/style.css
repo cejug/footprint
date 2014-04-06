@@ -1,0 +1,265 @@
+/* 
+Document   : style.css
+Created on : Oct 7, 2008, 10:47:54 AM
+Author     : fgaucho
+Description:
+Purpose of the stylesheet follows.
+*/
+ @CHARSET "UTF-8";
+
+.featureBorder {
+	border: solid;
+	border-width: 1px;
+	border-color: black;
+}
+
+.fullscreen {
+	width: 99%;
+	height: 100%;
+	font-family: Cortoba, Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+.introduction {
+	
+}
+
+.elementPane {
+	float: left;
+	border-color: red;
+	border-width: 1px;
+	padding: 0px;
+	border-top-style: solid;
+	border-left-style: solid;
+	width: 100%;
+	height: 100%;
+}
+
+.element {
+	float: right;
+	display: block;
+	font-weight: bolder;
+	font-size:x-large;
+	width: 99%;
+}
+
+.complexType {
+	float: right;
+	display: block;
+	font-size: medium;
+	width: 98%;
+	padding:3px;
+}
+
+ .documentation{
+	float: right;
+	display: block;
+	font-size: small;
+	width: 98%;
+	padding:3px;
+ }
+.topPane {
+	background: inherit;
+	width: 100%;
+	height: 55px;
+	border: solid;
+	border-width: 1px;
+	border-color: red;
+	padding: 3px;
+	vertical-align: top;
+}
+
+.topLeftPane {
+	background: inherit;
+	float: left;
+	height: 100%;
+	padding: 3px;
+}
+
+.topRightPane {
+	float: right;
+	width: 20%;
+	height: 100%;
+}
+
+.topCenterPane {
+	float: inherit;
+	min-height: 100%;
+	width: 70%;
+	display: table-row;
+	text-align: left;
+	text-indent: 3px;
+	padding: 3px;
+	text-indent: 3px;
+}
+
+.midCenterPane {
+	float: left;
+	width: 100%;
+	height: 90%;
+}
+
+.logo {
+	display: block;
+	margin: auto;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.leftPane {
+	float: inherit;
+	min-width: 10%;
+	max-width: 15%;
+	height: 100%;
+	padding: 1px 1px 1px 1px;
+	max-width: 15%;
+}
+
+.fontHeader {
+	font-size: 150%;
+	font-weight: bold;
+	text-align: left;
+}
+
+.loginrow {
+	width: 100%;
+	margin: 2px;
+}
+
+.loginlabel {
+	float: left;
+	width: 30%;
+	height: auto;
+}
+
+.loginlabel a {
+	text-decoration: none;
+}
+
+.loginfield {
+	float: right;
+	max-width: 70%;
+	height: auto;
+	margin-top: 1px;
+}
+
+.submit {
+	float: right;
+}
+
+.categories {
+	
+}
+
+.categories.item {
+	
+}
+
+.title {
+	font-family: serif;
+	font-variant: small-caps;
+}
+
+.searchpane {
+	float: left;
+	width: 100%;
+	height: 5%;
+	padding-top: 5px;
+}
+
+.searchfield {
+	float: inherit;
+	width: 30%;
+}
+
+.thinborder {
+	border: black;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.spacerright {
+	margin-right: 6px;
+}
+
+.searchcombo {
+	float: inherit;
+	background: inherit;
+}
+
+.searchsubmit {
+	float: inherit;
+}
+
+.offers {
+	float: left;
+}
+
+.simple {
+	float: left;
+	width: 30%;
+	max-height: 5%;
+	color: blue;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
+	text-align: justify;
+}
+
+.simple a {
+	float: left;
+	color: blue;
+	text-decoration: none;
+	max-width: 60%;
+}
+
+.simple label {
+	color: black;
+	float: left;
+	width: 100%;
+}
+
+.ad.oneColumn {
+	float: left;
+	min-width: 15%;
+	max-width: 30%;
+}
+
+.ad.twoColumn {
+	float: inherit;
+	min-width: 30%;
+	max-width: 60%;
+}
+
+.ad.oneRow {
+	width: 10%;
+}
+
+.ad.twoRow {
+	max-width: 20%;
+}
+
+.contact {
+	vertical-align: middle;
+}
+
+.adtitle {
+	width: 100%;
+	float: left;
+}
+
+.adtitle a {
+	max-width: 70%;
+}
+
+.adtitle label {
+	float: right;
+	text-align: right;
+	background-image: url('img/phone.png');
+	background-position: left;
+	background-repeat: no-repeat;
+	text-indent: 25px;
+	max-width: 25%;
+	vertical-align: middle;
+}

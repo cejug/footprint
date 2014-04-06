@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fpCertificate>
+	<id/>
+	<owner>
+		<id>0</id>
+		<name>fulano</name>
+		<avatar>3948f7bs78ect284tfwu8et78</avatar>
+		<email>fgaucho@gmail.com</email>
+		<event updatedTime="0">
+			<id>4</id>
+			<name>JUG event</name>
+			<address>
+				<id>0</id>
+				<street>net.java.dev.footprint.service.entity.facade._EventFacadeLocal_Wrapper@c1fe8dfc</street>
+				<phone>phone</phone>
+				<number>3</number>
+				<complement>complement</complement>
+				<name>oo</name>
+				<zip>zip</zip>
+				<country>oo</country>
+				<city>oo</city>
+				<coordinates>
+					<id>0</id>
+					<longitude>0.9</longitude>
+					<latitude>3.4</latitude>
+				</coordinates>
+			</address>
+			<price>
+				<id>0</id>
+				<value>0.0</value>
+			</price>
+		</event>
+		<event updatedTime="0">
+			<id>4</id>
+			<name>JUG event</name>
+			<address>
+				<id>0</id>
+				<street>net.java.dev.footprint.service.entity.facade._EventFacadeLocal_Wrapper@c1fe8dfc</street>
+				<phone>phone</phone>
+				<number>3</number>
+				<complement>complement</complement>
+				<name>oo</name>
+				<zip>zip</zip>
+				<country>oo</country>
+				<city>oo</city>
+				<coordinates>
+					<id>0</id>
+					<longitude>0.9</longitude>
+					<latitude>3.4</latitude>
+				</coordinates>
+			</address>
+			<price>
+				<id>0</id>
+				<value>0.0</value>
+			</price>
+		</event>
+	</owner>
+	<path>net.java.dev.footprint.service.entity.facade._EventFacadeLocal_Wrapper@c1fe8dfc</path>
+</fpCertificate>

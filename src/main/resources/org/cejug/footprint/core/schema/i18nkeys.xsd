@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd"
+	targetNamespace="http://footprint.dev.java.net/generated/i18n"
+	elementFormDefault="qualified" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:extensionBindingPrefixes="xjc" jaxb:version="2.1">
+
+	<xsd:annotation>
+		<xsd:documentation>
+			I18N keys enumeration, used to check in compile
+			time if
+			the internationalization files are matching the expected keys.
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:simpleType name="common.i18n">
+		<xsd:restriction base='xsd:string'>
+			<xsd:enumeration value="fail.to.cleanup.resource" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="publisher.i18n">
+		<xsd:restriction base='xsd:string'>
+			<xsd:enumeration value="publisher.ok" />
+			<xsd:enumeration value="publisher.not.ok" />
+			<xsd:enumeration value="publisher.execute.query" />
+			<xsd:enumeration value="publisher.wrong.parameter" />
+			<xsd:enumeration value="publisher.folder.created" />
+			<xsd:enumeration value="publisher.path.failure" />
+			<xsd:enumeration value="publisher.pdf.failed.to.replace" />
+			<xsd:enumeration value="publisher.pdf.replaced" />
+			<xsd:enumeration value="publisher.pdf.overwrite" />
+			<xsd:enumeration value="publisher.pdf.truetype.font.error" />
+			<xsd:enumeration value="publisher.pdf.truetype.font.loaded" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="exporter.i18n">
+		<xsd:restriction base='xsd:string'>
+			<xsd:enumeration value="folder.created" />
+			<xsd:enumeration value="path.failure" />
+			<xsd:enumeration value="pdf.pdf.overwrite" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="mailer.i18n">
+		<xsd:restriction base='xsd:string'>
+			<xsd:enumeration value="mailer.sent.ok" />
+			<xsd:enumeration value="mailer.sent.not.ok" />
+			<xsd:enumeration value="mailer.sent.rename.failure" />
+			<xsd:enumeration value="mailer.sent.move.failure" />
+			<xsd:enumeration value="mailer.empty.folder" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="config.unmarshal.i18n">
+		<xsd:restriction base='xsd:string'>
+			<xsd:enumeration value="config.validating" />
+			<xsd:enumeration value="config.template.file.not.found" />
+			<xsd:enumeration value="config.email.mallformed" />
+			<xsd:enumeration value="config.errors.header" />
+			<xsd:enumeration value="config.keystore.file.not.found" />
+			<xsd:enumeration value="config.keystore.alias.unknown" />
+			<xsd:enumeration value="config.keystore.stamp.not.found" />
+			<xsd:enumeration value="config.keystore.generic.problem" />
+			<xsd:enumeration value="config.keystore.unloadable" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

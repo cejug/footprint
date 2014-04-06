@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+  <welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+		<servlet-name>footprint-service</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>net.java.dev.footprint.service.resources</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+    <servlet-mapping>
+        <servlet-name>footprint-service</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+	<!-- filter>
+		<filter-name>WadlFormatFilter</filter-name>
+		<filter-class>net.java.dev.footprint.service.filter.WadlFormatFilter</filter-class>
+		<init-param>
+			<param-name>xsltfile</param-name>
+			<param-value>/WEB-INF/classes/xsl/wadl_documentation.xsl</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>WadlFormatFilter</filter-name>
+		<url-pattern>/application.wadl</url-pattern>
+	</filter-mapping-->
+
+	<!--
+		security-constraint> <display-name>DropBox</display-name>
+		<web-resource-collection>
+		<web-resource-name>DropBox</web-resource-name>
+		<description></description> <url-pattern>/user/create</url-pattern>
+		<http-method>GET</http-method> <http-method>POST</http-method>
+		<http-method>HEAD</http-method> <http-method>PUT</http-method>
+		<http-method>OPTIONS</http-method> <http-method>TRACE</http-method>
+		<http-method>DELETE</http-method> </web-resource-collection>
+		<auth-constraint> <description>Only conference organizers can add user
+		to the system.</description> <role-name>customer</role-name>
+		</auth-constraint> </security-constraint> <security-role> <description
+		/> <role-name>customer</role-name> </security-role> <login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>cejug-classifieds</realm-name> <form-login-config>
+		<form-login-page>/pages/security/login.html</form-login-page>
+		<form-error-page>/pages/security/error.faces</form-error-page>
+		</form-login-config> </login-config
+	-->
+
+</web-app>
