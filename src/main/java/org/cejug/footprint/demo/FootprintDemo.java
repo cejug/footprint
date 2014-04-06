@@ -5,12 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.mail.MessagingException;
-
 import org.cejug.footprint.core.exporter.Exporter;
 import org.cejug.footprint.core.exporter.pdf.PdfExporterFactory;
-import org.cejug.footprint.core.mailer.DefaultMailerStrategy;
-import org.cejug.footprint.core.mailer.Mailer;
 import org.cejug.footprint.core.publisher.FootprintPublisher;
 import org.cejug.footprint.core.publisher.JdbcPublisher;
 import org.cejug.footprint.core.util.FootprintDefaults;
@@ -55,16 +51,6 @@ public class FootprintDemo {
         // otherwise it will fail. Remember also to update the SMTP values, like
         // password, user and host :)
         // sendByEmail();
-    }
-
-    /**
-     * Dispatch each generated PDF to its filename email address.
-     * 
-     * @throws MessagingException
-     */
-    private void sendByEmail() throws MessagingException {
-        Mailer mailer = new DefaultMailerStrategy(config);
-        mailer.send();
     }
 
     /**

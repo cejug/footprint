@@ -11,15 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jersey-version>1.0.3</jersey-version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>SourceForge</id>
-            <url>http://csvjdbc.sourceforge.net/maven2</url>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>
@@ -41,27 +33,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.openejb</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0-5</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
             <version>5.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>net.sourceforge.csvjdbc</groupId>
-            <artifactId>csvjdbc</artifactId>
-            <version>1.0.18</version>
-        </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
