@@ -1,7 +1,10 @@
 footprint
 =========
 
-Footprint is a distributor of conference participation certificates, signed PDF documents that prove you attended a conference or a course.
+Gera PDF assinado de certificado de participação.
 
-See old doc (with notes)
-https://github.com/cejug/footprint/wiki/From-old-doc-(-with-notes-)
+O template precisa conter 3 chaves:
+
+* member
+* userGroup
+* event
